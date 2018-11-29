@@ -1,0 +1,25 @@
+---
+title: "Assignment 5"
+author: "Gracie White"
+date: "November 29, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+##Load Packages and Read in the Data 
+
+library(tidyverse)
+library(stargazer)
+library(kableExtra)
+
+fac_sal_df <- read_csv("Faculty salary data (2008 - 2009 survey).csv")
+grad_enroll_df <- read_csv("Grad Enrollment.csv")
+phd_med_sal_df <- read_csv("Median salary for doctoral recipients.csv")
+phd_field_df <- read_csv("PhDs by Field 1985 - 2015.csv")
+
+```
+
