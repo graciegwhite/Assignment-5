@@ -46,6 +46,20 @@ enr
 Question 2: Shifts in Female PhD Recipients by Field (1985,2000,2015)
 ```{r}
 
+#Describe if and how there was a shift in PhDs awarded to females in four fields (Physical and Earth Sciences, Engineering, Education, and Humanities & Arts) in 1985, 2000, and 2015. Describe your results statistically, in a graph or table, and in text. 
+
+phd_female_fields <- phd_field_df %>% 
+  select("Field of study and sex", "Gender", "Number 1985", "Percent 1985", "Number 2000", "Percent 2000", "Number 2015", "Percent 2015") %>% 
+  filter(Gender == "Female", `Field of study and sex` == "Physical sciences and earth sciences" | `Field of study and sex` == "Engineering" | `Field of study and sex` == "Education" | `Field of study and sex` == "Humanities and arts")
+
+phd_female_number <- phd_female_fields %>% 
+  select("Field of study and sex", "Gender", "Number 1985", "Number 2000", "Number 2015")
+
+phd_female_percent <- phd_female_fields %>% 
+  select("Field of study and sex", "Gender", "Percent 1985", "Percent 2000", "Percent 2015")
+
+
+
 ```
 
 
