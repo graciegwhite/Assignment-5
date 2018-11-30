@@ -23,3 +23,29 @@ phd_field_df <- read_csv("PhDs by Field 1985 - 2015.csv")
 
 ```
 
+
+Question 1: Male and Female Graduate Enrollment (1967-2015)
+```{r}
+# Exploring the data
+
+
+```
+
+
+Question 2: Shifts in Female PhD Recipients by Field (1985,2000,2015)
+```{r}
+
+```
+
+
+Question 3: Male and Female Salaries for Starting PostDoc & Other Employment Positions
+```{r}
+
+```
+
+
+Question 4: Exploring Academic Salaries for Professors in U.S. Colleges
+```{r}
+
+```
+
