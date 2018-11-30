@@ -36,9 +36,18 @@ enroll_explore
 
 # Female enrollment looks to be increasing at a much faster rate than male enrollment. Male enrollment was initially higher, but in the late 1980's, female enrollment surpassed male enrollement. Both enrollments level out at 2010. Male enrollment goes through stagnant periods and short spurts of increasing.
 
+
+# Running a linear regression on dependent variable (y = male enrollment) by independent variale (x = year)
+
 enroll_male_lm1 <- lm(`total Males` ~ Year, data = grad_enroll_df)
 
-enr
+summary(enroll_male_lm1)
+
+# Running a linear regression on dependent variable (y = female enrollment) by independent variable (x = year)
+
+enroll_female_lm1 <- lm(`total Females` ~ Year, data = grad_enroll_df)
+
+summary(enroll_female_lm1)
 
 ```
 
