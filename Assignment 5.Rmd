@@ -30,12 +30,16 @@ Question 1: Male and Female Graduate Enrollment (1967-2015)
 # Exploring the data
 
 enroll_explore <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
-  geom_point() +
-  facet_wrap(~Sex)
+  geom_point(aes(color = Sex))
 
 enroll_explore
 
 # Female enrollment looks to be increasing at a much faster rate than male enrollment. Male enrollment was initially higher, but in the late 1980's, female enrollment surpassed male enrollement. Both enrollments level out at 2010. Male enrollment goes through stagnant periods and short spurts of increasing.
+
+enroll_male_lm1 <- lm(`total Males` ~ Year, data = grad_enroll_df)
+
+enr
+
 ```
 
 
