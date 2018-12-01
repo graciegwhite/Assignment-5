@@ -34,6 +34,8 @@ enroll_explore <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
 
 enroll_explore
 
+
+
 # Female enrollment looks to be increasing at a much faster rate than male enrollment. Male enrollment was initially higher, but in the late 1980's, female enrollment surpassed male enrollement. Both enrollments level out at 2010. Male enrollment goes through stagnant periods and short spurts of increasing.
 
 
@@ -43,12 +45,26 @@ enroll_male_lm1 <- lm(`total Males` ~ Year, data = grad_enroll_df)
 
 summary(enroll_male_lm1)
 
+plot(enroll_male_lm1)
+
 # Running a linear regression on dependent variable (y = female enrollment) by independent variable (x = year)
 
 enroll_female_lm1 <- lm(`total Females` ~ Year, data = grad_enroll_df)
 
 summary(enroll_female_lm1)
 
+plot(enroll_female_lm1)
+
+# To show the trends graphically, we will plot a graph over time of female and male enrollment to show the differences in trends.
+
+grad_enroll_graph <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
+  geom_line(aes(color = Sex), size = 1) +
+  theme_linedraw() +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0), breaks = seq(0, 2000000, 250000), limits = c(0,2000000)) +
+  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)")
+
+grad_enroll_graph
 ```
 
 
