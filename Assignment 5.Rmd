@@ -125,6 +125,8 @@ phd_med$X5 <- factor(phd_med$X5)
 employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
 
 # It doesn't work! need to do mann whitney U
+
+employment_mannu <- 
 ```
 
 
