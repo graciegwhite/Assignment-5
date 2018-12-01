@@ -112,6 +112,7 @@ Question 3: Male and Female Salaries for Starting PostDoc & Other Employment Pos
 ```{r}
 phd_med <- phd_med_sal_df %>% 
   filter(Employment != "Male")
+View(phd_med)
 
 phd_med$Employment <- factor(phd_med$Employment)
 phd_med$X3 <- factor(phd_med$X3)
@@ -125,6 +126,42 @@ phd_med$X5 <- factor(phd_med$X5)
 employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
 
 # It doesn't work! need to do mann whitney U
+
+phd_med_sal_tidy_df
+
+employment_t <- t.test()
+```
+```{r}
+# Question 3
+
+# Exploratory Analysis
+
+# Make histogram of median salary vs sex, Employment
+employment_test_df <- phd_med_sal_tidy_df %>% 
+  filter(Planas == "EMPLOYMENT")
+
+employment_test_hist <- ggplot(employment_test_df, aes(x = Median.Salary )) +
+  geom_histogram(bins = 6, aes(fill = Sex)) +
+  facet_wrap(~ Sex, scale = "free") +
+  theme_classic() +
+  theme(legend.position = "none") + 
+  scale_y_continuous(expand = c(0,0))
+
+employment_test_hist
+
+# Make histogram of median salary vs sex, Employment
+postdoc_test_df <- phd_med_sal_tidy_df %>% 
+  filter(Planas == "POSTDOC")
+
+postdoc_test_hist <- ggplot(postdoc_test_df, aes(x = Median.Salary )) +
+  geom_histogram(bins = 6, aes(fill = Sex)) +
+  facet_wrap(~ Sex, scale = "free") +
+  theme_classic() +
+  theme(legend.position = "none") + 
+  scale_y_continuous(expand = c(0,0))
+
+postdoc_test_hist
+
 ```
 
 
