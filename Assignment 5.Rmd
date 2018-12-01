@@ -21,6 +21,7 @@ grad_enroll_df <- read_csv("Grad Enrollment.csv")
 phd_med_sal_df <- read_csv("Median salary for doctoral recipients.csv")
 phd_field_df <- read_csv("PhDs by Field 1985 - 2015.csv")
 enroll_tidy_df <- read_csv("enrollment tidy.csv")
+female_phd_tidy <- read_csv("Female_phds.csv")
 
 ```
 
@@ -58,8 +59,11 @@ phd_female_number <- phd_female_fields %>%
 phd_female_percent <- phd_female_fields %>% 
   select("Field of study and sex", "Gender", "Percent 1985", "Percent 2000", "Percent 2015")
 
+phd_female_number_graph <- ggplot(phd_female_number, aes())
 
+  
 
+  
 ```
 
 
