@@ -127,6 +127,7 @@ employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd
 
 # It doesn't work! need to do mann whitney U
 
+<<<<<<< HEAD
 phd_med_sal_tidy_df
 
 employment_t <- t.test()
@@ -162,6 +163,9 @@ postdoc_test_hist <- ggplot(postdoc_test_df, aes(x = Median.Salary )) +
 
 postdoc_test_hist
 
+=======
+employment_mannu <- 
+>>>>>>> c7759487c4160cce9f0a2562fc3e9020ef695c7b
 ```
 
 
