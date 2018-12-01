@@ -130,8 +130,9 @@ phd_med$X5 <- factor(phd_med$X5)
 
 employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
 
-# It doesn't work! need to do mann whitney U
+# It doesn't work! need to do mann whitney U/wilcox
 
+<<<<<<< HEAD
 
 phd_med_sal_tidy_df
 
@@ -168,6 +169,27 @@ postdoc_test_hist <- ggplot(postdoc_test_df, aes(x = Median.Salary )) +
 
 postdoc_test_hist
 
+=======
+employment_mannu <- wilcox.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
+
+# didn't work
+
+med_emp_male <- c(78000, 75000, 75000, 80000, 75167, 95000, 105000, 63000, 105000, 64000, 95000, 71000, 52000, 123500, 62800)
+
+med_emp_fem <- c(66000, 66000, 75000, 75000, 71750, 97650, 90000, 60000, 95750, 62000, 90000, 63000, 50000, 120000, 61000)
+
+employment_wilcox <- wilcox.test(med_emp_male, med_emp_fem, exact = FALSE, paired = TRUE)
+
+employment_wilcox
+
+med_post_male <- c(42750, 42000, 43000, 42000, 50000, 50000, 58000, 42000, 65000, 48000, 45000, 50000, 45000, 60000, 50000)
+
+med_post_fem <- c(44000, 42000, 43250, 42000, 50000, 53000, 55000, 42000, 65000, 49250, 45000, 45000, 45000, 63500, 44000)
+
+postdoc_wilcox <- wilcox.test(med_post_male, med_post_fem, exact = FALSE, paired = TRUE)
+
+postdoc_wilcox
+>>>>>>> 1a099a3d9993cb05fa49b61b9fb78235cb17602d
 ```
 
 
