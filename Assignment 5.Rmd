@@ -22,6 +22,7 @@ phd_med_sal_df <- read_csv("Median salary for doctoral recipients.csv")
 phd_field_df <- read_csv("PhDs by Field 1985 - 2015.csv")
 enroll_tidy_df <- read_csv("enrollment tidy.csv")
 female_phd_tidy <- read_csv("Female_phds.csv")
+female_probtable <- read_csv("phd_proptable.csv")
 
 ```
 
@@ -103,8 +104,12 @@ phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent E
   
 phd_female_percent_graph
 
+#proptables and chi square
 
+female_probtable$`1985`$`2000`$`2015` <- factor(female_probtable$`1985`$`2000`$`2015`)
 
+phd_prop <- prop.table(as.matrix(female_probtable), 1)
+phd_prop
 ```
 
 
