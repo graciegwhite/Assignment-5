@@ -54,27 +54,31 @@ phd_female_fields <- phd_field_df %>%
   filter(Gender == "Female", `Field of study and sex` == "Physical sciences and earth sciences" | `Field of study and sex` == "Engineering" | `Field of study and sex` == "Education" | `Field of study and sex` == "Humanities and arts")
 #but realized it was in a terrible format that R couldn't deal with so went back into excel and made a new one
 #Attempt 2:
+
+#reassign year to be a character
+
+female_phd_tidy$Year <- as.character(female_phd_tidy$Year)
+
 phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) + 
   theme_classic() + 
   scale_y_continuous(expand = c(0,0)) + 
-  scale_x_continuous(expand = c(0,0)) +
   scale_fill_discrete(name = "Field of Study")
   
 phd_female_number_graph
 
-#Does this make sense, or is it better to group by year???
+#Does this make sense, or is it better to group by year??? 
 
 #ok making another one that's based on percents  
 
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
-  geom_col(position = "dodge", aes(fill = `Field of study and sex`))
+  geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
+   theme_classic() + 
+  scale_fill_discrete(name = "Field of Study")
   
-  
-
 phd_female_percent_graph
 
-#The x asis is fucked for both. How dow I just have the the 3 years???
+
 
 ```
 
