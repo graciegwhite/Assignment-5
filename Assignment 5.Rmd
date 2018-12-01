@@ -53,13 +53,11 @@ phd_female_fields <- phd_field_df %>%
   select("Field of study and sex", "Gender", "Number 1985", "Percent 1985", "Number 2000", "Percent 2000", "Number 2015", "Percent 2015") %>% 
   filter(Gender == "Female", `Field of study and sex` == "Physical sciences and earth sciences" | `Field of study and sex` == "Engineering" | `Field of study and sex` == "Education" | `Field of study and sex` == "Humanities and arts")
 
-phd_female_number <- phd_female_fields %>% 
-  select("Field of study and sex", "Gender", "Number 1985", "Number 2000", "Number 2015")
 
-phd_female_percent <- phd_female_fields %>% 
-  select("Field of study and sex", "Gender", "Percent 1985", "Percent 2000", "Percent 2015")
-
-phd_female_number_graph <- ggplot(phd_female_number, aes())
+phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enrolled`, group = `Field of study and sex`)) +
+  geom_col(position = "dodge", aes(fill = `Field of study and sex`))
+  
+phd_female_number_graph
 
   
 
