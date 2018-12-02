@@ -26,7 +26,7 @@ enroll_tidy_df <- read_csv("enrollment tidy.csv")
 female_phd_tidy <- read_csv("Female_phds.csv")
 female_probtable <- read_csv("phd_proptable.csv")
 female_numbers_tidy <- read_csv("female_phd_numbers.csv")
-
+phd_med_sal_tidy_df <- read_csv("PostGrad_Med_Sal_TIDY FORMAT.csv")
 ```
 
 
@@ -67,7 +67,7 @@ grad_enroll_graph <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
   theme_linedraw() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 2000000, 250000), limits = c(0,2000000)) +
-  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)") + scale_color_brewer(palette = "PuBuGn")
+  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)") + scale_color_brewer(palette = "Pastel1")
 
 grad_enroll_graph
 ```
@@ -92,6 +92,7 @@ phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enr
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) + 
   theme_classic() + 
   scale_y_continuous(expand = c(0,0)) + 
+  scale_fill_brewer(palette = "Pastel1") +
   scale_fill_discrete(name = "Field of Study") +
   labs(title = "Number of Female PhD Enrollments by Field (1985-2015)")
   
@@ -107,7 +108,7 @@ phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent E
    theme_linedraw() + 
   scale_fill_discrete(name = "Field of Study") +
   labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)") +
-  scale_fill_brewer(palette = "PuBuGn")
+  scale_fill_brewer(palette = "Pastel1")
   
   
 phd_female_percent_graph
@@ -151,8 +152,6 @@ phd_med$X5 <- factor(phd_med$X5)
 
 # Regular employment
 
-employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
-
 # It doesn't work! need to do mann whitney U/wilcox
 
 
@@ -187,7 +186,8 @@ postdoc_test_hist <- ggplot(postdoc_test_df, aes(x = Median.Salary )) +
   facet_wrap(~ Sex, scale = "free") +
   theme_classic() +
   theme(legend.position = "none") + 
-  scale_y_continuous(expand = c(0,0))
+  scale_y_continuous(expand = c(0,0)) + 
+  scale_fill_brewer(palette = "Pastel1")
 
 postdoc_test_hist
 
@@ -211,11 +211,11 @@ postdoc_wilcox <- wilcox.test(med_post_male, med_post_fem, exact = FALSE, paired
 
 postdoc_wilcox
 
-<<<<<<< HEAD
+
 # Column Graphs for Visualization
 
 phd_med_sal_tidy_df2 <- phd_med_sal_tidy_df %>% 
-  mutate(sex = ifelse(Sex == "FEMALE", "Male", "Felmale")) %>% 
+  mutate(sex = ifelse(Sex == "FEMALE", "Male", "Female")) %>% 
   select(Field, Median.Salary, Planas, sex)
 
 phd_med_tidy_employ <- phd_med_sal_tidy_df2 %>% 
@@ -227,7 +227,7 @@ employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
   scale_fill_discrete(name = "Sex") +
   coord_flip() +
    scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
-  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "PuBuGn")
+  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1")
 
 employ_graph
 
@@ -241,11 +241,10 @@ postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
   scale_fill_discrete(name = "Sex") +
   coord_flip() + 
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
-  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "PuBuGn")
+  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "Pastel1")
 
 postdoc_graph
-=======
->>>>>>> eaad95554851abf7be4bccd23ac0624b08548194
+
 ```
 
 
@@ -338,7 +337,9 @@ vif(salary_lm5)
 
 gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary, group = Sex)) + 
   geom_point(aes(color = Faculty.Rank, shape = Discipline)) +
-  facet_wrap(~Sex)
+  facet_wrap(~Sex) +
+  scale_colour_brewer(palette = "Pastel1") + 
+  theme_bw()
 
 gender_dif_graph
                            
