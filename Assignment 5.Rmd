@@ -231,14 +231,20 @@ years_since_phd_gph
 
 ```{r}
 #Linear regession exploration 
+pairs_df <- fac_sal_df %>% 
+  select(Years.Since.PhD, Years.Faculty.Service, Salary)
 
+pairs(pairs_df)
+#Salary ad years since PHD looks more linear thean Years.faculty.service
 
-salary_lm <- lm(Salary ~ Sex + Years.Faculty.Service + Years.Since.PhD + Discipline, data = fac_sal_df)
+salary_lm <- lm(Salary ~ Sex + Years.Faculty.Service + Years.Since.PhD + Discipline + Faculty.Rank, data = fac_sal_df)
 salary_lm
 
 # b. Model summary:
 
 summary(salary_lm)
+AIC(salary_lm)
+# AIC = 9093.826
 
 #Visualize residuals
 plot(salary_lm)
@@ -248,27 +254,50 @@ vif(salary_lm)
 #I feel like basically we only use one of those I feel like that's fine since most people will work right after their phd, doesn't make sense to include both. 
 
 
-salary_lm2 <- lm(Salary ~ Sex + Years.Faculty.Service + Discipline, data = fac_sal_df)
+salary_lm2 <- lm(Salary ~ Sex + Years.Since.PhD + Discipline + Faculty.Rank, data = fac_sal_df)
 salary_lm2
 
 summary(salary_lm2)
 
+AIC(salary_lm2)
+#AIC = 9097.22
+
 plot(salary_lm2)
-#resdiuals look pretty good, and the qq plot looks good. 
+#resdiuals are bad, but the qq plot looks good. 
 
 vif(salary_lm2)
 #woooo all are under 4 so we are good to go re: colinearlity 
 
 
 #my prediction is that male/female doesn't change the slope of the line, they just have differne t starting point, so we need that interation term to make up for that? 
-#I will graph it to see if it's visual 
+#I will graph it to see if it's visual
+#ok no that predcition was wrong. Sex doesn't appear to be that significant, there's just way more males than females, and way more old males. 
+
+#For exploratory purposes, what about not including sex? 
+salary_lm3 <- lm(Salary ~ Years.Since.PhD + Discipline + Faculty.Rank, data = fac_sal_df)
+salary_lm3
+AIC(salary_lm3)
+#AIC = 9096.497
+plot(salary_lm3)
+vif(salary_lm3)
+
+#For exploratory purposes, maybe remove faculty rank, since that goes along with years since PHD?
+
+salary_lm4 <- lm(Salary ~ Years.Since.PhD + Discipline, data = fac_sal_df)
+salary_lm4
+AIC(salary_lm4)
+#AIC = 9217.566
+plot(salary_lm4)
+vif(salary_lm4)
 
 
-gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Faculty.Service, y = Salary, group = Sex)) + 
-  geom_point(aes(color = Sex, shape = Discipline))
+gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary, group = Sex)) + 
+  geom_point(aes(color = Faculty.Rank, shape = Discipline)) +
+  facet_wrap(~Sex)
 
 gender_dif_graph
                            
+
 
 
 ```
