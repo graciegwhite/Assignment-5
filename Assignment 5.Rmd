@@ -62,12 +62,15 @@ plot(enroll_female_lm1)
 
 # To show the trends graphically, we will plot a graph over time of female and male enrollment to show the differences in trends.
 
-grad_enroll_graph <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
+enroll_tidy_df1 <- enroll_tidy_df %>% 
+  mutate(enrollment = Enrollment/1000000)
+
+grad_enroll_graph <- ggplot(enroll_tidy_df1, aes(x = Year, y = enrollment)) +
   geom_line(aes(color = Sex), size = 1) +
   theme_linedraw() +
   scale_x_continuous(expand = c(0,0)) +
-  scale_y_continuous(expand = c(0,0), breaks = seq(0, 2000000, 250000), limits = c(0,2000000)) +
-  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)") + scale_color_brewer(palette = "Pastel1")
+  scale_y_continuous(expand = c(0,0), breaks = seq(0, 2, .25), limits = c(0,2)) +
+  labs(x = "Year", y = "Total Graduate Enrollment (Millions of Students)", title ="Graduate Enrollment in the United States (1967-2015)") + scale_color_brewer(palette = "Pastel1")
 
 grad_enroll_graph
 ```
@@ -107,7 +110,7 @@ phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent E
    theme_linedraw() + 
   labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)") +
   scale_fill_brewer(palette = "Pastel1", name = "Field of Study")
-  
+   
   
 phd_female_percent_graph
 
@@ -214,12 +217,8 @@ employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
    theme_linedraw() + 
   coord_flip() +
    scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
-<<<<<<< HEAD
-  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1")
+  labs(title = "Median Salaries in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1", name = "Sex")
 
-=======
-  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1", name = "Sex")
->>>>>>> 1bfc8ba9919d7cdf65f1ff2fc4b871c180a2f79d
 
 employ_graph
 
@@ -232,14 +231,10 @@ postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
    theme_linedraw() + 
   coord_flip() + 
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
-  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "Pastel1")
+  labs(title = "Median Salaries in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "Pastel1", name = "Sex")
 
 postdoc_graph
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1bfc8ba9919d7cdf65f1ff2fc4b871c180a2f79d
 ```
 
 
