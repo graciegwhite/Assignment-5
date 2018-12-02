@@ -261,6 +261,14 @@ vif(salary_lm2)
 
 
 #my prediction is that male/female doesn't change the slope of the line, they just have differne t starting point, so we need that interation term to make up for that? 
+#I will graph it to see if it's visual 
+
+
+gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Faculty.Service, y = Salary, group = Sex)) + 
+  geom_point(aes(color = Sex, shape = Discipline))
+
+gender_dif_graph
+                           
 
 
 ```
