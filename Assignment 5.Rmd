@@ -67,7 +67,7 @@ grad_enroll_graph <- ggplot(enroll_tidy_df, aes(x = Year, y = Enrollment)) +
   theme_linedraw() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 2000000, 250000), limits = c(0,2000000)) +
-  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)")
+  labs(x = "Year", y = "Total Graduate Enrollment", title ="Graduate Enrollment in the United States (1967-2015)") + scale_color_brewer(palette = "PuBuGn")
 
 grad_enroll_graph
 ```
@@ -104,9 +104,10 @@ phd_female_number_graph
 
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
-   theme_classic() + 
+   theme_linedraw() + 
   scale_fill_discrete(name = "Field of Study") +
-  labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)")
+  labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)") +
+  scale_fill_brewer(palette = "PuBuGn")
   
   
 phd_female_percent_graph
