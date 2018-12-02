@@ -23,6 +23,7 @@ phd_field_df <- read_csv("PhDs by Field 1985 - 2015.csv")
 enroll_tidy_df <- read_csv("enrollment tidy.csv")
 female_phd_tidy <- read_csv("Female_phds.csv")
 female_probtable <- read_csv("phd_proptable.csv")
+female_numbers_tidy <- read_csv("female_phd_numbers.csv")
 
 ```
 
@@ -106,11 +107,26 @@ phd_female_percent_graph
 
 #proptables and chi square
 
-female_probtable$`1985`$`2000`$`2015` <- factor(female_probtable$`1985`$`2000`$`2015`)
 
-phd_prop <- prop.table(as.matrix(female_probtable), 1)
-phd_prop
+row.names(female_numbers_tidy) <- female_numbers_tidy$`Field of study and sex`
+ 
+female_prop_final <- female_numbers_tidy %>% 
+  select(`1985`, `2000`, `2015`) 
+
+
+phd_chi <- chisq.test(female_prop_final)
+phd_chi
+
+#Ok proportions are significantly different, p < 2.2e-16
+
 ```
+#Ran phd_chi$stdres in the console to find the significant differences. ALl are significantly different from expected. 
+                                           1985       2000       2015
+Physical sciences and earth sciences -10.376557  -8.559263  17.031216
+Engineering                          -24.746239 -12.702359  33.184446
+Education                             29.337381   7.576085 -32.127993
+Humanities and arts                   -5.666481   7.947822  -2.866323
+
 
 
 Question 3: Male and Female Salaries for Starting PostDoc & Other Employment Positions
