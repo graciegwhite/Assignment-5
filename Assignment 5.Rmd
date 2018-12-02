@@ -137,14 +137,7 @@ Humanities and arts                   -5.666481   7.947822  -2.866323
 
 Question 3: Male and Female Salaries for Starting PostDoc & Other Employment Positions
 ```{r}
-phd_med <- phd_med_sal_df %>% 
-  filter(Employment != "Male")
-View(phd_med)
 
-phd_med$Employment <- factor(phd_med$Employment)
-phd_med$X3 <- factor(phd_med$X3)
-phd_med$`Postdoctoral study` <- factor(phd_med$`Postdoctoral study`)
-phd_med$X5 <- factor(phd_med$X5)
 
 # Running paired t-tests for the median salaries of male and females
 
@@ -155,9 +148,6 @@ phd_med$X5 <- factor(phd_med$X5)
 
 phd_med_sal_tidy_df
 
-
-```
-```{r}
 # Question 3
 
 # Exploratory Analysis
@@ -224,8 +214,12 @@ employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
    theme_linedraw() + 
   coord_flip() +
    scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
+<<<<<<< HEAD
   labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1")
 
+=======
+  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1", name = "Sex")
+>>>>>>> 1bfc8ba9919d7cdf65f1ff2fc4b871c180a2f79d
 
 employ_graph
 
@@ -242,7 +236,10 @@ postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
 
 postdoc_graph
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bfc8ba9919d7cdf65f1ff2fc4b871c180a2f79d
 ```
 
 
