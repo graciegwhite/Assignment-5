@@ -255,6 +255,8 @@ years_since_phd_gph
 
 
 ```{r}
+
+
 #Linear regession exploration 
 pairs_df <- fac_sal_df %>% 
   select(Years.Since.PhD, Years.Faculty.Service, Salary)
@@ -264,6 +266,9 @@ pairs(pairs_df)
 
 salary_lm <- lm(Salary ~ Sex + Years.Faculty.Service + Years.Since.PhD + Discipline + Faculty.Rank, data = fac_sal_df)
 salary_lm
+
+# Set rank reference level 
+fac_sal_df$Faculty.Rank <- fct_relevel(fac_sal_df$Faculty.Rank, "AsstProf")
 
 # b. Model summary:
 
