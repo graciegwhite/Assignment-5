@@ -92,8 +92,7 @@ phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enr
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) + 
   theme_classic() + 
   scale_y_continuous(expand = c(0,0)) + 
-  scale_fill_brewer(palette = "Pastel1") +
-  scale_fill_discrete(name = "Field of Study") +
+  scale_fill_brewer(palette = "Pastel1", name = "Field of Study") +
   labs(title = "Number of Female PhD Enrollments by Field (1985-2015)")
   
   
@@ -106,9 +105,8 @@ phd_female_number_graph
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
    theme_linedraw() + 
-  scale_fill_discrete(name = "Field of Study") +
   labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)") +
-  scale_fill_brewer(palette = "Pastel1")
+  scale_fill_brewer(palette = "Pastel1", name = "Field of Study")
   
   
 phd_female_percent_graph
@@ -226,11 +224,8 @@ employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
    theme_linedraw() + 
   coord_flip() +
    scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
-<<<<<<< HEAD
-  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "PuBuGn", name = "Sex")
-=======
   labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "Pastel1")
->>>>>>> c23ba377706f493617e7f0f87c35906e3e0dc322
+
 
 employ_graph
 
@@ -243,16 +238,11 @@ postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
    theme_linedraw() + 
   coord_flip() + 
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
-<<<<<<< HEAD
-  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "PuBuGn", name = "Sex")
-
-postdoc_graph
-=======
   labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "Pastel1")
 
 postdoc_graph
 
->>>>>>> c23ba377706f493617e7f0f87c35906e3e0dc322
+
 ```
 
 
@@ -263,7 +253,8 @@ Question 4: Exploring Academic Salaries for Professors in U.S. Colleges
 
 years_since_phd_gph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary)) +
   geom_point(aes(color = Sex), alpha = 0.5) +
-  facet_wrap(~ Faculty.Rank)
+  facet_wrap(~ Faculty.Rank) +
+  scale_fill_brewer(palette = "Pastel1")
 
 years_since_phd_gph
 ```
