@@ -16,6 +16,7 @@ library(tidyverse)
 library(stargazer)
 library(kableExtra)
 library(RColorBrewer)
+library(car)
 
 fac_sal_df <- read_csv("Faculty salary data (2008 - 2009 survey).csv")
 grad_enroll_df <- read_csv("Grad Enrollment.csv")
@@ -223,5 +224,44 @@ years_since_phd_gph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary)) 
   facet_wrap(~ Faculty.Rank)
 
 years_since_phd_gph
+```
+
+
+
+
+```{r}
+#Linear regession exploration 
+
+
+salary_lm <- lm(Salary ~ Sex + Years.Faculty.Service + Years.Since.PhD + Discipline, data = fac_sal_df)
+salary_lm
+
+# b. Model summary:
+
+summary(salary_lm)
+
+#Visualize residuals
+plot(salary_lm)
+
+vif(salary_lm)
+#ok yikes so years of faculty service and years since PhD are super correlated. 
+#I feel like basically we only use one of those I feel like that's fine since most people will work right after their phd, doesn't make sense to include both. 
+
+
+salary_lm2 <- lm(Salary ~ Sex + Years.Faculty.Service + Discipline, data = fac_sal_df)
+salary_lm2
+
+summary(salary_lm2)
+
+plot(salary_lm2)
+#resdiuals look pretty good, and the qq plot looks good. 
+
+vif(salary_lm2)
+#woooo all are under 4 so we are good to go re: colinearlity 
+
+
+#my prediction is that male/female doesn't change the slope of the line, they just have differne t starting point, so we need that interation term to make up for that? 
+
+
 ```
 
