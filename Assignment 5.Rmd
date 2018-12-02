@@ -211,7 +211,7 @@ postdoc_wilcox <- wilcox.test(med_post_male, med_post_fem, exact = FALSE, paired
 
 postdoc_wilcox
 
-<<<<<<< HEAD
+
 # Column Graphs for Visualization
 
 phd_med_sal_tidy_df2 <- phd_med_sal_tidy_df %>% 
@@ -224,10 +224,9 @@ phd_med_tidy_employ <- phd_med_sal_tidy_df2 %>%
 employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
   geom_col(position = "dodge", aes(fill = sex)) +
    theme_linedraw() + 
-  scale_fill_discrete(name = "Sex") +
   coord_flip() +
    scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
-  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "PuBuGn")
+  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") +  scale_fill_brewer(palette = "PuBuGn", name = "Sex")
 
 employ_graph
 
@@ -238,14 +237,11 @@ phd_med_tidy_post <- phd_med_sal_tidy_df2 %>%
 postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
   geom_col(position = "dodge", aes(fill = sex)) +
    theme_linedraw() + 
-  scale_fill_discrete(name = "Sex") +
   coord_flip() + 
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
-  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "PuBuGn")
+  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "PuBuGn", name = "Sex")
 
 postdoc_graph
-=======
->>>>>>> eaad95554851abf7be4bccd23ac0624b08548194
 ```
 
 
