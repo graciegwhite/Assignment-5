@@ -26,6 +26,7 @@ enroll_tidy_df <- read_csv("enrollment tidy.csv")
 female_phd_tidy <- read_csv("Female_phds.csv")
 female_probtable <- read_csv("phd_proptable.csv")
 female_numbers_tidy <- read_csv("female_phd_numbers.csv")
+phd_med_sal_tidy_df <- read_csv("PostGrad_Med_Sal_TIDY FORMAT.csv")
 
 ```
 
@@ -151,8 +152,6 @@ phd_med$X5 <- factor(phd_med$X5)
 
 # Regular employment
 
-employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
-
 # It doesn't work! need to do mann whitney U/wilcox
 
 
@@ -212,6 +211,38 @@ postdoc_wilcox <- wilcox.test(med_post_male, med_post_fem, exact = FALSE, paired
 
 postdoc_wilcox
 
+# Column Graphs for Visualization
+
+phd_med_sal_tidy_df2 <- phd_med_sal_tidy_df %>% 
+  mutate(sex = ifelse(Sex == "FEMALE", "Male", "Felmale")) %>% 
+  select(Field, Median.Salary, Planas, sex)
+
+phd_med_tidy_employ <- phd_med_sal_tidy_df2 %>% 
+  filter(Planas == "EMPLOYMENT")
+
+employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
+  geom_col(position = "dodge", aes(fill = sex)) +
+   theme_linedraw() + 
+  scale_fill_discrete(name = "Sex") +
+  coord_flip() +
+   scale_y_continuous(expand = c(0,0), breaks = seq(0, 125000, 25000), limits = c(0,125000)) +
+  labs(title = "Median Starting Salaries for PhD Recipients in non-PostDoc Positions", x = "Field", y = "Median Salary ($)") 
+
+employ_graph
+
+
+phd_med_tidy_post <- phd_med_sal_tidy_df2 %>% 
+  filter(Planas == "POSTDOC")
+
+postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
+  geom_col(position = "dodge", aes(fill = sex)) +
+   theme_linedraw() + 
+  scale_fill_discrete(name = "Sex") +
+  coord_flip() + 
+  scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
+  labs(title = "Median Starting Salaries for PhD Recipients in PostDoc Positions", x = "Field", y = "Median Salary ($)")
+
+postdoc_graph
 ```
 
 
