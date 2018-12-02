@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(stargazer)
 library(kableExtra)
+library(RColorBrewer)
 
 fac_sal_df <- read_csv("Faculty salary data (2008 - 2009 survey).csv")
 grad_enroll_df <- read_csv("Grad Enrollment.csv")
@@ -90,18 +91,22 @@ phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enr
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) + 
   theme_classic() + 
   scale_y_continuous(expand = c(0,0)) + 
-  scale_fill_discrete(name = "Field of Study")
+  scale_fill_discrete(name = "Field of Study") +
+  labs(title = "Number of Female PhD Enrollments by Field (1985-2015)")
+  
   
 phd_female_number_graph
 
 #Does this make sense, or is it better to group by year??? 
-
+#I can't get the colors to change :(
 #ok making another one that's based on percents  
 
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
    theme_classic() + 
-  scale_fill_discrete(name = "Field of Study")
+  scale_fill_discrete(name = "Field of Study") +
+  labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)")
+  
   
 phd_female_percent_graph
 
@@ -148,7 +153,6 @@ employment_t <- t.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd
 
 # It doesn't work! need to do mann whitney U/wilcox
 
-<<<<<<< HEAD
 
 phd_med_sal_tidy_df
 
@@ -185,7 +189,7 @@ postdoc_test_hist <- ggplot(postdoc_test_df, aes(x = Median.Salary )) +
 
 postdoc_test_hist
 
-=======
+
 employment_mannu <- wilcox.test(phd_med$Employment, phd_med$X3, paired = TRUE, data = phd_med)
 
 # didn't work
@@ -205,7 +209,7 @@ med_post_fem <- c(44000, 42000, 43250, 42000, 50000, 53000, 55000, 42000, 65000,
 postdoc_wilcox <- wilcox.test(med_post_male, med_post_fem, exact = FALSE, paired = TRUE)
 
 postdoc_wilcox
->>>>>>> 1a099a3d9993cb05fa49b61b9fb78235cb17602d
+
 ```
 
 
