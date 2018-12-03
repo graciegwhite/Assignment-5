@@ -75,6 +75,7 @@ grad_enroll_graph <- ggplot(enroll_tidy_df1, aes(x = Year, y = enrollment)) +
 grad_enroll_graph
 ```
 
+Figure 1. Graduate Enrollment in the United States (1967 - 2015) Total enrollment of graduate students in the United States from 1967 - 2015 (in millions of students). Blue line indicates Male students, red line indicates Female students. Source: U.S. Department of Education, National Center for Education Statistics(superscript to full citation) 
 
 Question 2: Shifts in Female PhD Recipients by Field (1985,2000,2015)
 ```{r}
