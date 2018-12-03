@@ -334,8 +334,10 @@ vif(salary_lm5)
 gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary, group = Sex)) + 
   geom_point(aes(color = Faculty.Rank, shape = Discipline)) +
   facet_wrap(~Sex) +
-  scale_colour_brewer(palette = "Pastel1") + 
-  theme_bw()
+  scale_colour_brewer(palette = "Pastel1", name = "Faculty Rank") + 
+  theme_bw() + 
+  labs(x = "Years Since PhD", y = "Salary", title = "Trends in Professor Salary")
+
 
 gender_dif_graph
                            
@@ -347,3 +349,7 @@ regression_table <- stargazer(salary_lm5, type = "html")
 
 ```
 
+
+
+
+#end
