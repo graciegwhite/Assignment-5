@@ -340,7 +340,10 @@ gender_dif_graph <- ggplot(fac_sal_df, aes(x = Years.Since.PhD, y = Salary, grou
 gender_dif_graph
                            
 
+```
 
+```{r, results = 'asis'}
+regression_table <- stargazer(salary_lm5, type = "html")
 
 ```
 
