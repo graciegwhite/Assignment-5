@@ -94,7 +94,7 @@ female_phd_tidy$Year <- as.character(female_phd_tidy$Year)
 
 phd_female_number_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Number Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) + 
-  theme_classic() + 
+  theme_linedraw() + 
   scale_y_continuous(expand = c(0,0)) + 
   scale_fill_brewer(palette = "Pastel1", name = "Field of Study") +
   labs(title = "Number of Female PhD Enrollments by Field (1985-2015)")
@@ -109,7 +109,7 @@ phd_female_number_graph
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
    theme_linedraw() + 
-  labs(title = "Percent of Female PhD Enrollments by Field (1985-2015)") +
+  labs(title = "Percent of PhDs Awarded to Females by Field (1985-2015)") +
   scale_fill_brewer(palette = "Pastel1", name = "Field of Study")
    
   
@@ -130,12 +130,22 @@ phd_chi
 #Ok proportions are significantly different, p < 2.2e-16
 
 ```
+Figure 2. The percent of PhDs awarded to female students by field of in 1985, 2000, and 2015. The percent of PhDs awarded to females increases over all fields of study.
+
+
+Chi Sq Test of independence: p < 2.2e-16
+Proportions of female students awarded PhDs differed significantly across all fields and all years, according to the standard residuals. 
+Standardized residuals greater than |2| indicate significance. 
+
+
+
 #Ran phd_chi$stdres in the console to find the significant differences. ALl are significantly different from expected. 
                                            1985       2000       2015
 Physical sciences and earth sciences -10.376557  -8.559263  17.031216
 Engineering                          -24.746239 -12.702359  33.184446
 Education                             29.337381   7.576085 -32.127993
 Humanities and arts                   -5.666481   7.947822  -2.866323
+
 
 
 
