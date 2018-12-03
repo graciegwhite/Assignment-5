@@ -109,7 +109,7 @@ phd_female_number_graph
 phd_female_percent_graph <- ggplot(female_phd_tidy, aes(x = Year, y = `Percent Enrolled`, group = `Field of study and sex`)) +
   geom_col(position = "dodge", aes(fill = `Field of study and sex`)) +
    theme_linedraw() + 
-  labs(title = "Percent of PhDs Awarded to Females by Field (1985-2015)") +
+  labs(title = "Percent of Doctorate Degrees Awarded to Females by Field (1985-2015)") +
   scale_fill_brewer(palette = "Pastel1", name = "Field of Study")
    
   
@@ -134,8 +134,8 @@ Figure 2. The percent of PhDs awarded to female students by field of in 1985, 20
 
 
 Chi Sq Test of independence: p < 2.2e-16
-Proportions of female students awarded PhDs differed significantly across all fields and all years, according to the standard residuals. 
-Standardized residuals greater than |2| indicate significance. 
+
+Proportions of female students awarded PhDs differed significantly across all fields and all years, according to the standard residuals. Standardized residuals greater than |2| indicate significance. 
 
 
 
