@@ -75,7 +75,8 @@ grad_enroll_graph <- ggplot(enroll_tidy_df1, aes(x = Year, y = enrollment)) +
 grad_enroll_graph
 ```
 
-Figure 1. Graduate Enrollment in the United States (1967 - 2015) Total enrollment of graduate students in the United States from 1967 - 2015 (in millions of students). Blue line indicates Male students, red line indicates Female students. Source: U.S. Department of Education, National Center for Education Statistics(superscript to full citation) 
+Figure 1. Graduate Enrollment in the United States (1967 - 2015) 
+Total postbaccalaureate fall enrollment at degree-granting postsecondary institutions in the United States from 1967 - 2015 (in millions of students). Blue line indicates Male students, red line indicates Female students. Source: U.S. Department of Education, National Center for Education Statistics(superscript to full citation) 
 
 Question 2: Shifts in Female PhD Recipients by Field (1985,2000,2015)
 ```{r}
@@ -223,7 +224,7 @@ phd_med_sal_tidy_df2 <- phd_med_sal_tidy_df %>%
 phd_med_tidy_employ <- phd_med_sal_tidy_df2 %>% 
   filter(Planas == "EMPLOYMENT")
 
-employ_graph <- ggplot(phd_med_tidy_employ, aes(x = Field, y = Median.Salary)) +
+employ_graph <- ggplot(phd_med_tidy_employ, aes(x = factor(Field, levels = rev(levels(factor(Field)))), y = Median.Salary)) +
   geom_col(position = "dodge", aes(fill = sex)) +
    theme_linedraw() + 
   coord_flip() +
@@ -237,16 +238,21 @@ employ_graph
 phd_med_tidy_post <- phd_med_sal_tidy_df2 %>% 
   filter(Planas == "POSTDOC")
 
-postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = Field, y = Median.Salary)) +
+postdoc_graph <- ggplot(phd_med_tidy_post, aes(x = factor(Field, levels = rev(levels(factor(Field)))), y = Median.Salary)) +
   geom_col(position = "dodge", aes(fill = sex)) +
    theme_linedraw() + 
-  coord_flip() + 
+  coord_flip() +
   scale_y_continuous(expand = c(0,0), breaks = seq(0, 80000, 20000), limits = c(0,80000)) +
   labs(title = "Median Salaries in PostDoc Positions", x = "Field", y = "Median Salary ($)") + scale_fill_brewer(palette = "Pastel1", name = "Sex")
 
 postdoc_graph
 
 ```
+Figure 3. Median Starting Salaries for Doctorate Recipients in Regular Employment Positions (2015)
+The starting annual salary for regular employment positions (non-Postdoctorate study) reported by doctorate recipients with definite postgraduate plans in the United States in 2015, by field of study and sex. Median represents the exact salary values of respondants at the 50th percentile of their frequency distribution. Blue bar indicates Male students, red bar indicates Female students. Source: National Science Foundation, National Center for Science and Engineering Statistics (insert superscript for citation)
+
+Figure 4. Median Starting Salaries for Doctorate Recipients in Postdoc Positions (2015)
+The starting annual salary for Postdoctorate study positions reported by doctorate recipients with definite postgraduate plans in the United States in 2015, by field of study and sex. Median represents the exacty salary values of respondants at the 50th percentile of their frequency distribution. Blue bar indicates Male students, red bar indicates Females students. Source: National Science Foundation, National Center for Science and Engineering Statistics (insert superscript for citation)
 
 
 Question 4: Exploring Academic Salaries for Professors in U.S. Colleges
